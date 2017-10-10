@@ -1,0 +1,21 @@
+{
+    "name": "dzentota/chrome-dev-tools",
+    "description": "This is a PHP lib that allows one to interact with Google Chrome using Chrome DevTools Protocol within a PHP script. Highly inspired by marty90/PyChromeDevTools",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alex Tatulchenkov",
+            "email": "webtota@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "ChromeDevTools\\": "src/"
+        }
+    },
+    "require": {
+        "textalk/websocket": "1.0.*"
+    }
+}
