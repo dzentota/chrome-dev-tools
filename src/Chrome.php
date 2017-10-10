@@ -83,7 +83,7 @@ class Chrome
 
     /**
      * Current domain to call methods on
-     * @var Chrome
+     * @var string
      */
     private $currentDomain;
 
@@ -136,10 +136,15 @@ class Chrome
         if ($updateTabs || empty($this->tabs)) {
             $this->getTabs();
         }
-        $wsUrl = $this->tabs[$tab]['webSocketDebuggerUrl'];
+        $wsUrl = $this->getWsUrl($tab);
         $this->close();
-        $this->wsClient = new Client($wsUrl);
+        $this->wsClient = $this->getWsClient($wsUrl);
         $this->wsClient->setTimeout($this->timeout);
+    }
+
+    public function getWsClient($wsUrl)
+    {
+        return new Client($wsUrl);
     }
 
     /**
@@ -283,5 +288,14 @@ class Chrome
             }
         }
         return $result;
+    }
+
+    /**
+     * @param $tab
+     * @return mixed
+     */
+    protected function getWsUrl($tab)
+    {
+        return $this->tabs[$tab]['webSocketDebuggerUrl']?? null;
     }
 }
