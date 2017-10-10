@@ -15,11 +15,11 @@ An updated Google-Chrome version
 ## 3.1 Init
 In your php script, as first, you must create a Chrome object, like in the following:
 ```php
-$chrome = new ChromeDevTools\Chrome()
+$chrome = new ChromeDevTools\Chrome();
 ```
 You can specify the host and the port of Chrome manually writing:
 ```php
-$chrome = ChromeDevTools\Chrome($host="1.1.1.1", $port=1234);
+$chrome = new ChromeDevTools\Chrome($host="1.1.1.1", $port=1234);
 ```
 By default it uses `localhost:9222`.
 
@@ -27,7 +27,7 @@ By default it uses `localhost:9222`.
 To send a command to Chrome, just invoke the corresponding method on the Chrome object, and pass the desired parameters.
 For example, to visit a page write:
 ```php
-$chrome->Page->navigate(['url' => 'http://example.com/');
+$chrome->Page->navigate(['url' => 'http://example.com/']);
 ```
 The return value of the command is passed as return value of the function, already interpreted as JSON.
 
@@ -38,7 +38,7 @@ All unread events are erased before any new command is run.
 
 a) You can pop one message from the queue of received ones writing:
 ```php
-$message = $chrome->waitMessage()
+$message = $chrome->waitMessage();
 ```
 The method accepts an optional parameter `timeout` which is the value in seconds after which it gives up and returns `null`.
 Default is 1.
